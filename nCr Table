@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+   public long printPascal(int num){
+       // Makes use of Dynamic Programming
+        num = num+1;
+        long[][] arr = new long[num] [num];
+        for (int line = 0; line < num; line++) 
+        {                
+            for (int i = 0; i <= line; i++)
+            {
+               if (line == i || i == 0)
+               {
+                   arr[line][i] = 1;
+               }
+               else
+               {
+                   arr[line][i] = arr[line-1][i-1] + arr[line-1][i];
+               }
+                  
+                  // modulo 10^9 is used here to accommodate large integer values
+               arr[line][i] = arr[line][i]%1000000000;
+
+               if (line==num-1)
+               {
+                   System.out.print(arr[line][i]);
+                  System.out.print(" ");
+               }
+            }
+        }
+
+       System.out.println("");
+    return 0;
+}
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+       
+        Scanner in = new Scanner(System.in);
+        int T = in.nextInt();
+    
+        for(int i=0;i<T;i++){
+            int num = in.nextInt();
+        
+        
+        Solution Test = new Solution();
+        
+         Test.printPascal(num);
+     }
+        
+        
+    }
+    }
