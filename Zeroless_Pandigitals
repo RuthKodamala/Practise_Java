@@ -1,0 +1,102 @@
+
+package datastructurepractise;
+import java.util.*;
+import java.util.Random;
+
+/*Using a Tree set because:
+Java TreeSet class implements the Set interface that uses a tree for storage.
+It inherits AbstractSet class and implements NavigableSet interface.
+The objects of TreeSet class are stored in ascending order.The important points 
+about Java TreeSet class are:
+Contains unique elements only like HashSet.
+Access and retrieval times are quiet fast.
+Maintains ascending order.*/
+
+public class PandigitalNum {
+   //verifies whether a number is "Zeroless Pandigital or not". 
+  private boolean isPandigital(int n){ 
+      Set set= new TreeSet(); //
+      String string = n+""; 
+  for (char c:string.toCharArray())
+  { if (c=='0')
+      return false;
+  set.add(c); } 
+  return set.size()==string.length();
+  } 
+   
+// int[]
+//Need to generate a list of pandigitals of a certain digit length
+// but this is only for a single random number of specified length  
+/* void genPandigitals(int num){
+   int[] pandigitals = new int[num];
+   //Random rnd = new Random();
+int x = 0;
+int count = 0;
+do {
+    x = ((int)(Math.random() * 100000)) % 1000;
+    pandigitals[count]=x;
+    count++;
+} while (Integer.toString(x).length() == num);
+   
+     //return pandigitals;
+     for(int j=0;j<pandigitals.length;j++){
+         if(isPandigital(pandigitals[j]))
+             System.out.print("p" + pandigitals[j]+" ");
+     }
+     
+  }*/ 
+
+
+    static int generate(int num){
+
+        Random r = new Random();
+
+         String number="";
+
+         int counter=0;
+
+         while(counter++< num) number+= r.nextInt(9);
+
+        int tmp = Integer.parseInt(number);
+        
+        return tmp;
+    }
+
+  
+
+ // Checking whether the pandigital number is also prime
+     void isPrime(int n) { 
+    int i,m=0,flag=0;    
+  //int n=17;//it is the number to be checked  
+  m=n/2;    
+  for(i=2;i<=m;i++){    
+   if(n%i==0){    
+   System.out.println("Number is not prime");    
+   flag=1;    
+   break;    
+   }    
+  }    
+  if(flag==0)    
+  System.out.println("Number is prime");    
+}
+     
+    public static void main(String a[]){
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+        PandigitalNum p = new PandigitalNum();
+        int d = PandigitalNum.generate(num);
+        System.out.println("Gen:" + d);
+        
+        //isPrime pn = new isPrime();
+        p.isPrime(d);
+        
+        //p.isPrime(d);
+       if(p.isPandigital(d))           
+        System.out.println("Number is Zeroless Pandigital");
+              else
+        System.out.println("Number is NOT Zeroless Pandigital");
+      
+    }
+}
+
+  
